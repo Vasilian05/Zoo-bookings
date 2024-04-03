@@ -146,15 +146,18 @@ Class User extends Dbh {
     }
 
     //check for matching password
-    private function checkLogin(){
-
+    public function checkLogin(){
+    
         $user = $this->loginEmail();
-        if(count($user) > 1){
-            if(password_verify($this->pass, $user['pass'])){
-                
+        if(count($user) >= 1){
+            if(password_verify($this->pass, $user[0]['pass'])){
+                setcookie('is_logged_in', '1', time() + (86400 * 30), "/"); // 86400 = 1 day
+                setcookie('user_id', $user[0]['user_id'], time() + (86400 * 30), "/"); // 86400 = 1 day
+                header('location:index.php');
                 return $user[0];
                 
             }else {
+                echo 'error';
                 $error = 'Incorrect password';
                 return $error;
             }
@@ -165,7 +168,7 @@ Class User extends Dbh {
     //loginEmail
     private function loginEmail(){
         
-        $stmt = $this->connect()->prepare('SELECT * WHERE email = ?');
+        $stmt = $this->connect()->prepare('SELECT * FROM User WHERE email = ?');
 
         if($stmt->execute([$this->email])){
             
