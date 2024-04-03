@@ -145,16 +145,37 @@ Class User extends Dbh {
 
     }
 
+    //check for matching password
+    private function checkLogin(){
+
+        $user = $this->loginEmail();
+        if(count($user) > 1){
+            if(password_verify($this->pass, $user['pass'])){
+                
+                return $user[0];
+                
+            }else {
+                $error = 'Incorrect password';
+                return $error;
+            }
+
+        }
+    }
+
     //loginEmail
     private function loginEmail(){
         
         $stmt = $this->connect()->prepare('SELECT * WHERE email = ?');
 
         if($stmt->execute([$this->email])){
-            //check if passwords match
+            
+            //email exists return the row 
+            return $stmt->fetchAll();
             
         }else {
-            //email doesn't exist 
+            //email doesn't exist -> exit script 
+            $stmt = null;
+            exit();
         }
     }
 
