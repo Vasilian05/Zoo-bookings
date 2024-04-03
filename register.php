@@ -14,7 +14,8 @@ if (isset($_POST['submit'])){
   //create a new instance of the user class
   $user = new User();
 
-  $user->setProperties($first_name, $last_name, $email, $pass);
+  $user->setNames($first_name, $last_name);
+  $user->setEmailPass($email, $pass);
   $user->addUser();
 }
 

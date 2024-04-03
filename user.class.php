@@ -10,12 +10,14 @@ Class User extends Dbh {
     private $pass;
 
     //Setting properties
-    public function setProperties($first_name, $last_name, $email, $pass) {
+    public function setNames($first_name, $last_name){
         $this->first_name=$first_name;
         $this->last_name=$last_name;
+    }
+
+    public function setEmailPass($email, $pass) {
         $this->email=$email;
         $this->pass=$pass;
-
     }
 
 
@@ -143,9 +145,20 @@ Class User extends Dbh {
 
     }
 
-    //loyalty discount
+    //loginEmail
+    private function loginEmail(){
+        
+        $stmt = $this->connect()->prepare('SELECT * WHERE email = ?');
 
-    //
+        if($stmt->execute([$this->email])){
+            //check if passwords match
+            
+        }else {
+            //email doesn't exist 
+        }
+    }
+
+    //loyalty discount
 
 
 }
