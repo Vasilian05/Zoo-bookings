@@ -1,5 +1,5 @@
 <?php include 'includes/header.php' ?>
-<?php include 'user.class.php' ?>
+<?php include 'classes/user.class.php' ?>
 
 <?php 
 
