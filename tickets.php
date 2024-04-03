@@ -15,6 +15,10 @@
     <label class="form-label">Child Tickets</label>
     <input name="child_ticket" type="number" class="form-control">
   </div>
+  <div class="mb-3">
+    <label class="form-label">Baby Tickets</label>
+    <input name="child_ticket" type="number" class="form-control">
+  </div>
   <button name="submit"type="submit" class="btn btn-dark">Submit</button>
 </form>
 
