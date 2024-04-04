@@ -39,7 +39,16 @@ if (isset($_POST['submit'])) {
     <label class="form-label">Date</label>
     <input required name="date" type="date" class="form-control">
   </div>
-  <button name="submit"type="submit" class="btn btn-dark">Submit</button>
+  <div class="row mt-5">
+    <div class="col-6">
+        <button name="submit"type="submit" class="btn btn-dark w-100">Submit</button>
+    </div>
+    <div class="col-6">
+        <button name="submit"type="submit" class="btn btn-outline-dark w-100">Clear</button>
+    </div>
+    
+    
+  </div>
 </form>
 
 
