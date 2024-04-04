@@ -3,10 +3,13 @@
 <?php 
 
 if (isset($_POST['submit'])) {
+    include_once 'classes/cart.class.php';
+
     $adult_tickets = $_POST['adult_tickets'];
     $child_tickets = $_POST['child_tickets'];
     $baby_tickets = $_POST['baby_tickets'];
 
+    $cart = new Cart($adult_tickets, $child_tickets, $baby_tickets);
     
 }
 
