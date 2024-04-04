@@ -9,9 +9,9 @@ public function TicketsToCart($adult_tickets, $child_tickets, $baby_tickets, $da
 
     //save all tickets in associative array - key value pairs
     $tickets = array(
-        "adult tickets" => $adult_tickets,
-         "child_tickets" => $child_tickets, 
-         "baby_tickets" => $baby_tickets
+        "adult ticket" => $adult_tickets,
+         "child_ticket" => $child_tickets, 
+         "baby_ticket" => $baby_tickets
         );
     
         //create an array for all items added to cart
