@@ -7,25 +7,7 @@ if (isset($_POST['submit'])) {
     $child_tickets = $_POST['child_tickets'];
     $baby_tickets = $_POST['baby_tickets'];
 
-    $tickets = array(
-    "adult tickets" => $adult_tickets,
-     "child tickets" => $child_tickets, 
-     "baby_tickets" => $baby_tickets
-    );
-
-    $cart = array();
-    foreach($tickets as $key => $value){
-
-        
-        if($value >0) {
-            $new_cart_item = array(
-                'ticket' => $key,
-                'quantity' => $value
-            );
-            array_push($cart, $new_cart_item);
-        }
-    }
-    print_r($cart);
+    
 }
 
 
