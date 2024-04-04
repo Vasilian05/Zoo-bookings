@@ -10,18 +10,7 @@
 if(isset($_SESSION['Cart'])){
 
 $tickets = $_SESSION['Cart'];
-    for($i = 0; $i < (sizeof($tickets) -1); $i++){ ?>
-        <tr>
-          <th scope="row">1</th>
-          <td><?php print_r($_SESSION['Cart'][0]['type']);?></td>
-          <td>x<?php print_r($_SESSION['Cart'][0]['quantity']);?></td>
-          <td>£8</td>
-          <td><?php print_r($_SESSION['Cart'][2]['date']);?></td>
-          <td> <button name="submit"type="submit" class="btn btn-outline-dark w-100">Remove</button> </td>
-          </tr>
-          <tr>
-        <?php
-    }
+    
 ?>
 
 
@@ -30,34 +19,29 @@ $tickets = $_SESSION['Cart'];
   <table class="table table-borderless">
       <thead>
           <tr>
-          <th scope="col">#</th>
+          <th scope="col"> </th>
           <th scope="col">Ticket</th>
           <th scope="col">Quantity</th>
           <th scope="col">Price</th>
           <th scope="col">Date</th>
           </tr>
       </thead>
-      <tbody>
-          <tr>
-          <th scope="row">1</th>
-          <td><?php print_r($_SESSION['Cart'][0]['type']);?></td>
-          <td>x<?php print_r($_SESSION['Cart'][0]['quantity']);?></td>
+      <tbody> <?php
+      $date_index = sizeof($tickets) - 1; //the index of the date in the array
+
+      //create a new row for each item in the array except date
+      for($i = 0; $i < (sizeof($tickets) -1); $i++){ ?>
+        <tr>
+          <th scope="row"><?php $i+1 ?></th>
+          <td><?php print_r($tickets[$i]['type']);?></td>
+          <td>x<?php print_r($tickets[$i]['quantity']);?></td>
           <td>£8</td>
-          <td><?php print_r($_SESSION['Cart'][2]['date']);?></td>
+          <td><?php print_r($tickets[$date_index]['date']);?></td>
           <td> <button name="submit"type="submit" class="btn btn-outline-dark w-100">Remove</button> </td>
           </tr>
           <tr>
-          <th scope="row">2</th>
-          <td>Child Ticket</td>
-          <td>x4</td>
-          <td>£7</td>
-          </tr>
-          <tr>
-          <th scope="row">3</th>
-          <td>Baby Ticket</td>
-          <td>x2</td>
-          <td>£0</td>
-          </tr>
+    <?php
+    }?>
   </tbody>
   </table>
   </div>
