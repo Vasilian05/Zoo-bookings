@@ -12,15 +12,20 @@ if (isset($_POST['submit'])) {
      "child tickets" => $child_tickets, 
      "baby_tickets" => $baby_tickets
     );
-    
-    //try foreach instead of for loop
-    for($i=0; $i < count($tickets); $i++) {
+
+    $cart = array();
+    foreach($tickets as $key => $value){
+
         
-        if($tickets[$i] > 0) {
-            $_SESSON['Cart'] = $tickets[$i];
-            var_dump( $_SESSION['Cart']);
+        if($value >0) {
+            $new_cart_item = array(
+                'ticket' => $key,
+                'quantity' => $value
+            );
+            array_push($cart, $new_cart_item);
         }
     }
+    print_r($cart);
 }
 
 
