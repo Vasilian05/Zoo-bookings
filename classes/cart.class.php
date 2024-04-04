@@ -4,7 +4,7 @@
 
 class Cart {
 
-public function TicketsToCart($adult_tickets, $child_tickets, $baby_tickets){
+public function TicketsToCart($adult_tickets, $child_tickets, $baby_tickets, $date){
 
     //save all tickets in associative array - key value pairs
     $tickets = array(
@@ -20,7 +20,7 @@ public function TicketsToCart($adult_tickets, $child_tickets, $baby_tickets){
             //check if there's 1 or more tickets for each type
             if($value >0) {
                 $new_cart_item = array(
-                    'ticket' => $key,
+                    $date => $key,
                     'quantity' => $value
                 );
                 array_push($cart, $new_cart_item);  //push to original array
