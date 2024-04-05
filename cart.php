@@ -10,7 +10,7 @@
 if(isset($_SESSION['Cart'])){
 
 $tickets = $_SESSION['Cart'];
-    
+
 ?>
 
 

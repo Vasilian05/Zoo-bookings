@@ -20,4 +20,22 @@ trait GetUser {
             echo 'user not found';
         }
     }
+
+    /*
+    checks if the user is logged in
+    if user is logged in then return the user id 
+    if the user is not logged in then return false
+
+    */
+    public function isLoggedIn(){
+
+        //check if cookie is exists
+        if(isset($_COOKIE['is_logged_in'])){
+            return $_COOKIE['user_id'];
+        }else{
+            return false;
+        }
+
+
+    }
 }

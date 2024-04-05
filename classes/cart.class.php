@@ -32,8 +32,8 @@ public function TicketsToCart($adult_tickets, $child_tickets, $baby_tickets, $da
         array_push($cart, $arr_date); //pushing the date at the end of the array
         $_SESSION['Cart'] = $cart;  //save the cart array in session
 
-
 }
+
 
 
 

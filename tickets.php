@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
 
     $cart = new Cart();
     $cart->TicketsToCart($adult_tickets, $child_tickets, $baby_tickets, $date);
-    print_r($_SESSION['Cart']);
+
 }
 
 
