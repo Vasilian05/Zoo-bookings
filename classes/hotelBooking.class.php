@@ -1,4 +1,5 @@
 <?php include_once 'config.php'; ?>
+<?php include 'interfaces&traits/booking.interface.php'; ?>
 
 
 
@@ -6,7 +7,7 @@
 
 class HotelBooking extends Dbh implements Booking {
 
-    use GetUser;
+
 
 public function makeBooking(){}
 
