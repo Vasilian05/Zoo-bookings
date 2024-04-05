@@ -1,6 +1,16 @@
 <?php include 'includes/header.php'?>
+<?php include 'classes/safariBooking.class.php'?>
+
+<?php 
+if(isset($_POST['pay'])) {
+$booking = new SafariBooking();
+$booking->makeBooking();
+
+}
 
 
+
+?>
 
 
 <h1 class="text-center mt-5">Checkout</h1>
@@ -8,7 +18,7 @@
     <div class="row align-items-start">
         <div class="col-8">
             <h3 class="text-start">Billing details</h3>
-            <form  class="w-50 mt-2"method="POST">
+            <form  class="w-50 mt-2"method=""> 
 
                 <div class="mb-3">
                     <label class="form-label">Cardholder Name</label>
@@ -38,13 +48,15 @@
                 <div class="card-header">
                     Summary
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Subtotal:</h5>
-                    <p class="card-text">VAT tax:</p>
-                    <button name="submit"type="submit" class="btn btn-outline-dark w-100 mt-2">Debit Card</button>
-                    <button name="submit"type="submit" class="btn btn-outline-dark w-100 mt-2">PayPal</button>
-                    <button name="submit"type="submit" class="btn btn-outline-dark w-100 mt-2">Apple Pay</button>
-                </div>
+                <form method="POST">
+                    <div class="card-body">
+                        <h5 class="card-title">Subtotal:</h5>
+                        <p class="card-text">VAT tax:</p>
+                        <button name="pay"type="submit" class="btn btn-outline-dark w-100 mt-2">Debit Card</button>
+                        <button name="pay"type="submit" class="btn btn-outline-dark w-100 mt-2">PayPal</button>
+                        <button name="pay"type="submit" class="btn btn-outline-dark w-100 mt-2">Apple Pay</button>
+                    </div>
+                </form>
             </div>
     </div>
 </div>
