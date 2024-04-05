@@ -54,7 +54,7 @@ $tickets = $_SESSION['Cart'];
       <div class="card-body">
           <h5 class="card-title">Subtotal:</h5>
           <p class="card-text">VAT tax:</p>
-          <a href="#" class="btn btn-outline-dark w-100">Checkout</a>
+          <a href="checkout.php" class="btn btn-outline-dark w-100">Checkout</a>
       </div>
 </div>
 </div>
