@@ -1,5 +1,6 @@
 <?php include 'config.php' ?>
 
+
 <?php 
 
 class SafariBooking extends Dbh implements Booking {
@@ -9,12 +10,20 @@ class SafariBooking extends Dbh implements Booking {
     public function makeBooking(){
 
         //check if user is logged in
+        if(!$this->isLoggedIn()){
+
+            header('location:register.php');
+            return 'In order to make a booking you need to create or log in to your account';
+        }else{
+            $user_id = $this->isLoggedIn();
+            echo $user_id;
+        }
 
         //get the tickets from session
 
         //prepare a query 
 
-        //save booking in db
+        //save booking in d
 
 
 

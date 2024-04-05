@@ -1,4 +1,5 @@
 <?php include 'includes/header.php'?>
+<?php include 'classes/safariBooking.class.php'?>
 
 <?php 
 
@@ -12,7 +13,8 @@ if (isset($_POST['submit'])) {
 
     $cart = new Cart();
     $cart->TicketsToCart($adult_tickets, $child_tickets, $baby_tickets, $date);
-
+    $test = new SafariBooking();
+    $test->makeBooking();
 }
 
 
