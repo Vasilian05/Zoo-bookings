@@ -23,7 +23,6 @@ class SafariBooking extends Dbh implements Booking {
     
     public function makeBooking(){
         
-
         //check if user is logged in
         if(!$this->isLoggedIn()){
 
@@ -33,13 +32,34 @@ class SafariBooking extends Dbh implements Booking {
             $user_id = $this->isLoggedIn();
             
             $tickets = $_SESSION['Cart'];
-            print_r($tickets);
+            $adult_tickets = 0;
+            $child_tickets = 0;
+            $baby_tickets = 0;
+            $date_index = sizeof($tickets) - 1; //the index of the date in the array
+
+            //save the quantity of each ticket type in variable
+            for($i = 0;$i < (count($tickets) - 1); $i++){
+
+                if ($tickets[$i]['type'] == 'Adult ticket'){
+                    $adult_tickets = $tickets[$i]['quantity'];
+                }
+                if ($tickets[$i]['type'] == 'Child ticket'){
+                    $child_tickets = $tickets[$i]['quantity'];
+                }
+                if ($tickets[$i]['type'] == 'Baby ticket'){
+                    $baby_tickets = $tickets[$i]['quantity'];
+                }
+            }
             //prepare a statement 
-            // $stmt = $this->connect()->prepare('INSERT INTO SafariBookings(user_id, booking_date, adult_ticket, child_ticket, baby_ticket) VALUES(?, ?, ?, ?, ?)');
+            $stmt = $this->connect()->prepare('INSERT INTO SafariBookings(user_id, booking_date, adult_ticket, child_ticket, baby_ticket) VALUES(?, ?, ?, ?, ?)');
 
-            // if($stmt->execute([$user_id, ])){
-
-            // }
+            if(!$stmt->execute([$user_id, $tickets[$date_index]['date'], $adult_tickets, $child_tickets, $baby_tickets ])){
+                $stmt = null;
+                echo 'stmt failed';
+                exit();
+            }else{
+                echo 'booked';
+            }
         }
 
         //get the tickets from session
