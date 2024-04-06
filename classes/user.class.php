@@ -1,4 +1,4 @@
-<?php include 'config.php' ?>
+<?php include_once 'config.php' ?>
 
 <?php
 
@@ -193,17 +193,12 @@ Class User extends Dbh {
        
         if($this->checkName($this->first_name)){
             $error = 'First name can only contain alphabetical values';
-        
         }
         if($this->checkName($this->last_name)){
             $error = 'last name can only contain alphabetical values';
-            
-
         }
         if($this->checkEmail()){
             $error = 'Please enter a valid email address';
-            
-
         }
 
         if($error == ""){

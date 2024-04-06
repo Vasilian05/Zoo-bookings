@@ -1,5 +1,5 @@
 <?php include_once 'config.php'; ?>
-<?php include 'interfaces&traits/booking.interface.php'; ?>
+<?php include_once 'interfaces&traits/booking.interface.php'; ?>
 
 
 
@@ -13,7 +13,7 @@ public function makeBooking(){}
 
 public function cancelBooking(){}
 
-public function displayBooking(){}
+public function displayBooking($user_id){}
 
 
 

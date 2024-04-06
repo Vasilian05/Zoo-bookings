@@ -1,14 +1,15 @@
 <?php include 'includes/header.php';?>
-<?php include 'classes/user.class.php';?>
-<?php include 'classes/hotelBooking.class.php';?>
+<?php include_once 'classes/user.class.php';?>
+<?php include_once 'classes/safariBooking.class.php';?>
+<?php include_once 'classes/hotelBooking.class.php';?>
 
 <?php 
 
 $user = new User();
-
+$bookings = new SafariBooking();
 $user_data = $user->getUser($_COOKIE['user_id']);
 
-print_r($user_data);
+
 
 if(isset($_POST['update'])){
     $first_name = $_POST['first_name'];
@@ -17,8 +18,8 @@ if(isset($_POST['update'])){
 
     $user->setNames($first_name, $last_name);
     $user->setEmail($email);
-    echo $user->validateUpdate($user_data[0]['user_id']);
-    echo 1;
+    $user->validateUpdate($user_data[0]['user_id']);
+
 
 }
 ?>
@@ -46,7 +47,34 @@ if(isset($_POST['update'])){
         </form>
     </div>
     <div class="col-6">
-      Previous Bookings
+      <h2>Previous Bookings</h2>
+      <?php 
+      $past_bookings = $bookings->displayBooking($user_data[0]['user_id']);
+      ?>
+       <table class="table table-borderless mt-5">
+      <thead>
+          <tr>
+          <th scope="col"> </th>
+          <th scope="col">Reference number</th>
+          <th scope="col">Total tickets</th>
+          <th scope="col">Date</th>
+          </tr>
+      </thead>
+      <tbody> <?php
+
+      //create a new row for each item in the array except date
+      for($i = 0; $i < count($past_bookings); $i++){ ?>
+        <tr>
+          <th scope="row"><?php $i+1 ?></th>
+          <td>#<?php echo $past_bookings[$i]['booking_id']?></td>
+          <td>x<?php echo ($past_bookings[$i]['adult_ticket'] + $past_bookings[$i]['child_ticket'] + $past_bookings[$i]['baby_ticket']) ;?></td>
+          <td><?php echo $past_bookings[$i]['booking_date'] ?></td>
+          </tr>
+          <tr>
+    <?php
+    }?>
+  </tbody>
+  </table>
     </div>
   </div>
 </div>

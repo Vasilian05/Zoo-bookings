@@ -1,7 +1,5 @@
-<?php 
-include 'config.php';
-include 'interfaces&traits/booking.interface.php';
-?>
+<?php include_once 'config.php'; ?>
+<?php include_once 'interfaces&traits/booking.interface.php';?>
 
 
 
@@ -74,7 +72,20 @@ class SafariBooking extends Dbh implements Booking {
 
     public function cancelBooking(){}
 
-    public function displayBooking(){}
+
+    public function displayBooking($user_id){
+
+        $stmt = $this->connect()->prepare('SELECT * FROM SafariBookings WHERE user_id = ?');
+
+        if($stmt->execute([$user_id])){
+            return $stmt->fetchAll();
+        }else{
+            $stmt = null;
+            echo 'error occured';
+            exit();
+        }
+
+    }
 
 
 }

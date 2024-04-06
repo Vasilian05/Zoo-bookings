@@ -6,7 +6,7 @@ interface Booking {
 
     public function makeBooking();
     public function cancelBooking();
-    public function displayBooking();
+    public function displayBooking($user_id);
 }
 
 
