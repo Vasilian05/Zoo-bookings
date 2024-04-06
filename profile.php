@@ -9,6 +9,12 @@ $user = new User();
 $user_data = $user->getUser($_COOKIE['user_id']);
 
 print_r($user_data);
+
+if(isset($_POST['update'])){
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $email = $_POST['last_name'];
+}
 ?>
 <h1>Welcome <?php echo ucwords($user_data[0]['first_name'])?></h1>
 
@@ -20,17 +26,17 @@ print_r($user_data);
 
             <div class="mb-3">
                 <label class="form-label">First Name</label>
-                <input name="first_name" required type="text" class="form-control" aria-describedby="emailHelp" placeholder="<?php echo ucwords($user_data[0]['first_name'])?>">
+                <input name="first_name" required type="text" class="form-control" aria-describedby="emailHelp" value="<?php echo ucwords($user_data[0]['first_name'])?>">
             </div>
             <div class="mb-3">
                 <label class="form-label">Last Name</label>
-                <input name="last_name" required type="text" class="form-control" aria-describedby="emailHelp" placeholder="<?php echo ucwords($user_data[0]['last_name'])?>">
+                <input name="last_name" required type="text" class="form-control" aria-describedby="emailHelp" value="<?php echo ucwords($user_data[0]['last_name'])?>">
             </div>
             <div class="mb-3">
                 <label class="form-label">Email address</label>
-                <input name="email" required type="email" class="form-control" aria-describedby="emailHelp"placeholder="<?php echo $user_data[0]['email']?>" >
+                <input name="email" required type="email" class="form-control" aria-describedby="emailHelp" value="<?php echo $user_data[0]['email']?>" >
             </div>
-            <button name="submit"type="submit" class="btn btn-outline-dark">Update</button>
+            <button name="update"type="submit" class="btn btn-outline-dark">Update</button>
         </form>
     </div>
     <div class="col-6">

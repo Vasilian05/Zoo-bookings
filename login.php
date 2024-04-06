@@ -10,7 +10,8 @@ if (isset($_POST['submit'])){
   
   //create a new instance of the user class
   $user = new User();
-  $user->setEmailPass($email, $pass);
+  $user->setPass($pass);
+  $user->setEmail($email);
   $user->checkLogin();
   
 }

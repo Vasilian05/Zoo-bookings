@@ -15,7 +15,8 @@ if (isset($_POST['submit'])){
   $user = new User();
 
   $user->setNames($first_name, $last_name);
-  $user->setEmailPass($email, $pass);
+  $user->setEmail($email);
+  $user->setPass($pass);
   $user->addUser();
 }
 

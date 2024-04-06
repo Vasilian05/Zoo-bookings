@@ -15,8 +15,10 @@ Class User extends Dbh {
         $this->last_name=$last_name;
     }
 
-    public function setEmailPass($email, $pass) {
+    public function setEmail($email){
         $this->email=$email;
+    }
+    public function setPass($pass) {
         $this->pass=$pass;
     }
 
