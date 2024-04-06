@@ -186,5 +186,46 @@ Class User extends Dbh {
 
     //loyalty discount
 
+    //update validation
 
+    public function validateUpdate($user_id){
+        $error = "";
+       
+        if($this->checkName($this->first_name)){
+            $error = 'First name can only contain alphabetical values';
+        
+        }
+        if($this->checkName($this->last_name)){
+            $error = 'last name can only contain alphabetical values';
+            
+
+        }
+        if($this->checkEmail()){
+            $error = 'Please enter a valid email address';
+            
+
+        }
+
+        if($error == ""){
+            // update
+            $this->Update($user_id);
+        }else {
+            return $error;
+        }
+    
+    }
+
+
+    private function Update($user_id){
+
+        $stmt = $this->connect()->prepare('UPDATE User SET first_name = ?,last_name = ?,email = ? WHERE user_id = ? ');
+
+        if($stmt->execute([$this->first_name, $this->last_name, $this->email, $user_id])){
+            echo 'Update successful';
+        }else {
+            $stmt = null;
+            echo 'update unsuccessful';
+            exit();
+        }
+    }
 }
