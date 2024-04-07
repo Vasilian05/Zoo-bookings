@@ -1,14 +1,17 @@
 <?php include 'includes/header.php'?>
+<?php include 'classes/hotelBooking.class.php'?>
+<?php
+$d = new DateTime();
+$d = new DateTime('20-03-2024');
+    //$d->modify('last day of april');
+   // echo $d->format('jS, F Y');
+$x = date_create('12-03-2024');
+$y = date_diff($x, $d);
+echo $y->format('%d');
 
+$test = new HotelBooking();
 
-<?php 
-
-$dateTime = new DateTime();
-var_dump($dateTime);
-
+$test->calcDates();
 ?>
-
-
-
 
 <?php include 'includes/footer.php'?>
