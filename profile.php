@@ -47,7 +47,7 @@ if(isset($_POST['update'])){
         </form>
     </div>
     <div class="col-6">
-      <h2>Previous Bookings</h2>
+      <h2>Your Bookings</h2>
       <?php 
       $past_bookings = $bookings->displayBooking($user_data[0]['user_id']);
       ?>
