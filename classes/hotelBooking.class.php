@@ -92,7 +92,7 @@ public function availability($booking_dates){
 public function getRooms($room_type){
     $stmt = $this->connect()->prepare('SELECT * FROM Room WHERE room_type_id = ?');
 
-    if($stmt->execute($room_type)){
+    if($stmt->execute([$room_type])){
         $rooms = $stmt->fetchAll();
         return $rooms;
     }else{

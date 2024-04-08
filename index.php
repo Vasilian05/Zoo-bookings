@@ -14,4 +14,13 @@ $test = new HotelBooking();
 $test->bookedDates();
 ?>
 
+
+<br>
+<br>
+
+<?php 
+
+print_r($test->getRooms(1));
+?>
+
 <?php include 'includes/footer.php'?>
