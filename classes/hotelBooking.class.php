@@ -7,12 +7,13 @@
 
 class HotelBooking extends Dbh implements Booking {
 
+
+    // -------------Availability-------------
     
 //fetch bookings for a month
 private function getBookings($date_start, $date_end, $room_type){
 
     $stmt = $this->connect()->prepare('SELECT * FROM HotelBookings WHERE date_start > ? AND date_end < ? AND room_id IN (SELECT room_id FROM Room WHERE room_type_id = ?)');
-    $rooms = $this->getRooms($room_type);
     if($stmt->execute([$date_start, $date_end, 1])){
         $booked_dates = $stmt->fetchAll();
         return $booked_dates;
@@ -25,7 +26,7 @@ private function getBookings($date_start, $date_end, $room_type){
 }
 
 
-
+//creates array with all booked dates including duplicates
 public function bookedDates(){
 
     //get the bookings in a given month
@@ -35,7 +36,7 @@ public function bookedDates(){
         $arr_dates = [];
     
         for($i = 0; $i < count($bookings); $i++){
-            // $date_start = date('d-m-Y', strtotime($bookings[$i]['date_start']));
+            
             $date_start = new DateTime($bookings[$i]['date_start']);
             $date_end = new DateTime($bookings[$i]['date_end']);
             
@@ -61,24 +62,6 @@ public function bookedDates(){
 
 }
 
-
-//getting all rooms of a specified type
-public function getRooms($room_type){
-    $stmt = $this->connect()->prepare('SELECT room_id FROM Room WHERE room_type_id = ?');
-
-    if($stmt->execute([$room_type])){
-        $rooms = $stmt->fetchAll();
-        $room_id = [];
-        for($i = 0; $i < count($rooms); $i++){
-            array_push($room_id,  $rooms[$i]['room_id']);
-        }
-        return $room_id;
-
-
-    }else{
-        return 'error';
-    }
-}
 
 public function checkDuplicates($arr_bookings, $number_of_rooms){
    

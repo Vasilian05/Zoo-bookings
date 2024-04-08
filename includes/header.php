@@ -30,7 +30,7 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="tickets.php">Tickets</a></li>
-            <li><a class="dropdown-item" href="#">Hotel</a></li>
+            <li><a class="dropdown-item" href="hotel.php">Hotel</a></li>
             <li><a class="dropdown-item" href="#">Annual tickets</a></li>
           </ul>
         </li>
