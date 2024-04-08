@@ -13,7 +13,7 @@ private function getBookings($date_start, $date_end, $room_type){
 
     $stmt = $this->connect()->prepare('SELECT * FROM HotelBookings WHERE date_start > ? AND date_end < ? AND room_id IN (SELECT room_id FROM Room WHERE room_type_id = ?)');
     $rooms = $this->getRooms($room_type);
-    if($stmt->execute([$date_start, $date_end, 2])){
+    if($stmt->execute([$date_start, $date_end, 1])){
         $booked_dates = $stmt->fetchAll();
         return $booked_dates;
     }else {
@@ -80,17 +80,38 @@ public function getRooms($room_type){
     }
 }
 
-public function checkDuplicates($arr_bookings){
+public function checkDuplicates($arr_bookings, $number_of_rooms){
    
-    //NOTE FOR FUTURE DEVELOPMENT
-    //If more rooms are added in the hotel, count the number of duplicates and compare it with the number of rooms. 
-    //if the number of duplicates is less than the number of rooms, then it's available
-    $duplicates = array_diff_assoc( 
-        $arr_bookings,  
-        array_unique($arr_bookings) 
-    );
-    return $duplicates;
+    $counts = array_count_values($arr_bookings);
+    $values = array();
+    foreach($counts as $number =>$count){
+        if ($count >= $number_of_rooms){
+            array_push($values, $number);
+        }
+    }
+    return $values;
 }
+
+//count duplicates 
+
+// <?php
+// // Define the array
+// $numbers = [4, 4, 4, 7, 4, 5, 6, 6, 6, 6]; // 6 is repeated 4 times
+
+// // Count the occurrences of each number
+// $counts = array_count_values($numbers);
+
+// // Loop through the counts and print the repeated numbers along with their counts
+// foreach ($counts as $number => $count) {
+//     if ($count > 3) {
+//         echo "$number is not available.\n";
+//     } elseif ($count > 1) {
+//         echo "Number $number is repeated $count times.\n";
+//     }
+// }
+
+
+
 
 
 public function makeBooking(){}
