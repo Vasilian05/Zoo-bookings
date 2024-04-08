@@ -24,41 +24,48 @@ private function getBookings($date_start, $date_end){
 
 }
 
+//fetch the room ids of each type of room
 
-public function calcDates(){
+//get the bookings where the ids 
 
+
+
+
+public function bookedDates(){
+
+    //get the bookings in a given month
     $bookings = $this->getBookings('2024-04-01', '2024-04-30');
         
 
         $arr_dates = [];
     
-        //push all dates that are booked in array
         for($i = 0; $i < count($bookings); $i++){
-            $date_start = date('d-m-Y', strtotime($bookings[$i]['date_start']));
+            // $date_start = date('d-m-Y', strtotime($bookings[$i]['date_start']));
+            $date_start = new DateTime($bookings[$i]['date_start']);
+            $date_end = new DateTime($bookings[$i]['date_end']);
             
+            //find the how many days apart is start date from end date
+            $diff = date_diff($date_start, $date_end);
             
-            //$newDate = date("d-m-Y", strtotime($orgDate));  
-            $date_end = date('d-m-Y', strtotime($bookings[$i]['date_end']));
-
-          echo $date_end;
-
-
-            
-            array_push($arr_dates, $date_start); //push the start day to the array
-            // $diff = date_diff($date_start, $date_end);
-            // echo gettype($diff->d);
+            //push the start date into the array
+            $first_date = $date_start->format('d-m-Y');
+            array_push($arr_dates, $first_date);
 
             //get the dates in-between start and end date and push them in array
-            // for($x = 0; $x < $diff->d; $x++){
-            //     $new_date = $date_start;
-            //     $new_date->modify('+' .$x.' days');
-            //     array_push($arr_dates, $new_date);
-            // }
-            // array_push($arr_dates, $date_end);
+            for($x = 1; $x < ($diff->d +1); $x++){
+                
+                
+                
+                $date_start->modify('+1 day');
+                $new_date = $date_start->format('d-m-Y');
+                
+                array_push($arr_dates, $new_date);
+            }
+            
             
         }
 
-        //var_dump($arr_dates);
+        print_r($arr_dates);
         
 // $x = date_create('12-03-2024');
 // $y = date_diff($x, $d);

@@ -11,7 +11,7 @@ echo $y->format('%d');
 
 $test = new HotelBooking();
 
-$test->calcDates();
+$test->bookedDates();
 ?>
 
 <?php include 'includes/footer.php'?>
