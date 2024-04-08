@@ -34,22 +34,31 @@ public function calcDates(){
     
         //push all dates that are booked in array
         for($i = 0; $i < count($bookings); $i++){
-            $date_start = new DateTime($bookings[$i]['date_start']);
+            $date_start = date('d-m-Y', strtotime($bookings[$i]['date_start']));
+            
+            
             //$newDate = date("d-m-Y", strtotime($orgDate));  
-            $date_end = new DateTime($bookings[$i]['date_end']);
+            $date_end = date('d-m-Y', strtotime($bookings[$i]['date_end']));
+
+          echo $date_end;
+
+
+            
             array_push($arr_dates, $date_start); //push the start day to the array
-            $diff = date_diff($date_start, $date_end);
+            // $diff = date_diff($date_start, $date_end);
+            // echo gettype($diff->d);
 
             //get the dates in-between start and end date and push them in array
-            // for($x = 0; $x < $diff; $x++){
-            //     $new_date = $date_start + $x;
+            // for($x = 0; $x < $diff->d; $x++){
+            //     $new_date = $date_start;
+            //     $new_date->modify('+' .$x.' days');
             //     array_push($arr_dates, $new_date);
             // }
             // array_push($arr_dates, $date_end);
-            // 
+            
         }
 
-        var_dump($arr_dates);
+        //var_dump($arr_dates);
         
 // $x = date_create('12-03-2024');
 // $y = date_diff($x, $d);
