@@ -24,9 +24,7 @@ private function getBookings($date_start, $date_end){
 
 }
 
-//fetch the room ids of each type of room
 
-//get the bookings where the ids 
 
 
 
@@ -90,6 +88,17 @@ public function availability($booking_dates){
     
 }
 
+//getting all rooms of a specified type
+public function getRooms($room_type){
+    $stmt = $this->connect()->prepare('SELECT * FROM Room WHERE room_type_id = ?');
+
+    if($stmt->execute($room_type)){
+        $rooms = $stmt->fetchAll();
+        return $rooms;
+    }else{
+        return 'error';
+    }
+}
 
 
 public function makeBooking(){}
@@ -104,6 +113,16 @@ public function displayBooking($user_id){}
 // save number of duplicates in variable 
 // if that integer is equal to the number of rooms of that type the room is booked
 
+//fetch the room ids of each type of room
+//get the type of room room that user wants to check
+//get the bookings of these types of rooms using ids 
+
 
 
 }
+
+//get number of bookings 
+
+// if number of bookings is less than the number of rooms, == available 
+
+//if number of bookings is equal or 
