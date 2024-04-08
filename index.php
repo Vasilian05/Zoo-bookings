@@ -11,7 +11,10 @@ echo $y->format('%d');
 
 $test = new HotelBooking();
 
-$test->bookedDates();
+ $arr_bookings = $test->bookedDates();
+
+print_r($arr_bookings);
+ print_r($test->checkDuplicates($arr_bookings));
 ?>
 
 
@@ -20,7 +23,7 @@ $test->bookedDates();
 
 <?php 
 
-print_r($test->getRooms(1));
+// print_r($test->getRooms(1));
 ?>
 
 <?php include 'includes/footer.php'?>

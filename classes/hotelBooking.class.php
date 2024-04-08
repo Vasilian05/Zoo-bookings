@@ -9,11 +9,13 @@ class HotelBooking extends Dbh implements Booking {
 
     
 //fetch bookings for a month
-private function getBookings($date_start, $date_end){
+private function getBookings($date_start, $date_end, $room_type){
 
-    $stmt = $this->connect()->prepare('SELECT * FROM HotelBookings WHERE date_start > ? AND date_end < ?');
-
-    if($stmt->execute([$date_start, $date_end])){
+    //NOTE FOR FUTURE DEVELOPMENT
+    //change query if more rooms are added
+    $stmt = $this->connect()->prepare('SELECT * FROM HotelBookings WHERE date_start > ? AND date_end < ? AND (room_id = ? or room_id = ?)');
+    $rooms = $this->getRooms($room_type);
+    if($stmt->execute([$date_start, $date_end, $rooms[0], $rooms[1]])){
         $booked_dates = $stmt->fetchAll();
         return $booked_dates;
     }else {
@@ -26,13 +28,10 @@ private function getBookings($date_start, $date_end){
 
 
 
-
-
-
 public function bookedDates(){
 
     //get the bookings in a given month
-    $bookings = $this->getBookings('2024-04-01', '2024-04-30');
+    $bookings = $this->getBookings('2024-04-01', '2024-04-30', 1);
         
 
         $arr_dates = [];
@@ -52,8 +51,6 @@ public function bookedDates(){
             //get the dates in-between start and end date and push them in array
             for($x = 1; $x < ($diff->d +1); $x++){
                 
-                
-                
                 $date_start->modify('+1 day');
                 $new_date = $date_start->format('d-m-Y');
                 
@@ -62,42 +59,39 @@ public function bookedDates(){
             
             
         }
-
-        print_r($arr_dates);
-        
-// $x = date_create('12-03-2024');
-// $y = date_diff($x, $d);
-// echo $y->format('%d');
+        return $arr_dates;
 
 }
 
-private function converDiff($date_start, $diff){
-    $start_to_end_dates = [];
-
-    for($i = 0; $i < $diff; $i++){
-        $new_date = $date_start + $i;
-        array_push($start_to_end_dates, $new_date);
-    }
-
-    return $start_to_end_dates;
-
-}
-
-public function availability($booking_dates){
-
-    
-}
 
 //getting all rooms of a specified type
 public function getRooms($room_type){
-    $stmt = $this->connect()->prepare('SELECT * FROM Room WHERE room_type_id = ?');
+    $stmt = $this->connect()->prepare('SELECT room_id FROM Room WHERE room_type_id = ?');
 
     if($stmt->execute([$room_type])){
         $rooms = $stmt->fetchAll();
-        return $rooms;
+        $room_id = [];
+        for($i = 0; $i < count($rooms); $i++){
+            array_push($room_id,  $rooms[$i]['room_id']);
+        }
+        return $room_id;
+
+
     }else{
         return 'error';
     }
+}
+
+public function checkDuplicates($arr_bookings){
+   
+    //NOTE FOR FUTURE DEVELOPMENT
+    //If more rooms are added in the hotel, count the number of duplicates and compare it with the number of rooms. 
+    //if the number of duplicates is less than the number of rooms, then it's available
+    $duplicates = array_diff_assoc( 
+        $arr_bookings,  
+        array_unique($arr_bookings) 
+    );
+    return $duplicates;
 }
 
 
