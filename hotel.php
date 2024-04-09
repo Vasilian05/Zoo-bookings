@@ -13,15 +13,14 @@ if(isset($_POST['search'])){
     $last_date= new DateTime();
     $last_date = new DateTime('20-03-2024');
     $last_date->modify('last day of '. $month);
-    $last_date = date_format($last_date,"d/m/Y");
+    $last_date = date_format($last_date,"Y/m/d");
 
     //getting the first day of the month
     $first_date= new DateTime();
     $first_date = new DateTime('20-03-2024');
     $first_date->modify('first day of '. $month);
-    $first_date = date_format($first_date,"d/m/Y");
+    $first_date = date_format($first_date,"Y/m/d");
 
-    print_r($last_date);
 
 
 
@@ -29,9 +28,10 @@ if(isset($_POST['search'])){
 
     $arr_bookings = $test->bookedDates($first_date, $last_date, $room_type);
 
-    print_r($arr_bookings);
+    //print_r($arr_bookings);
     // print_r($arr_bookings);
-    print_r($test->checkDuplicates($arr_bookings, 2));
+    $duplicates = $test->checkDuplicates($arr_bookings, 2);
+    print_r($duplicates);
 }
 
 ?>
@@ -77,6 +77,17 @@ if(isset($_POST['search'])){
     </div>
 </form>
 </div>
+
+<h3>Unavaliable Dates</h3> 
+<?php
+if(isset($_POST['search'])){
+
+    for($i = 0; $i < count($duplicates); $i++){
+        echo $diplicates[$i];
+    }
+
+}
+?>
 
 
 
