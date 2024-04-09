@@ -1,5 +1,5 @@
 <?php include_once 'includes/header.php'; ?>
-<?php include_once 'classes/hotel.class.php'; ?>
+<?php include_once 'classes/hotelBooking.class.php'; ?>
 
 <?php 
 if(isset($_POST['search'])){
@@ -29,9 +29,9 @@ if(isset($_POST['search'])){
 
     $arr_bookings = $test->bookedDates($first_date, $last_date, $room_type);
 
+    print_r($arr_bookings);
     // print_r($arr_bookings);
-    // print_r($arr_bookings);
-    print_r($test->checkDuplicates($arr_bookings, 1));
+    print_r($test->checkDuplicates($arr_bookings, 2));
 }
 
 ?>

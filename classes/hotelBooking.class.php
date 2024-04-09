@@ -14,7 +14,7 @@ class HotelBooking extends Dbh implements Booking {
 private function getBookings($date_start, $date_end, $room_type){
 
     $stmt = $this->connect()->prepare('SELECT * FROM HotelBookings WHERE date_start > ? AND date_end < ? AND room_id IN (SELECT room_id FROM Room WHERE room_type_id = ?)');
-    if($stmt->execute([$date_start, $date_end, 1])){
+    if($stmt->execute([$date_start, $date_end, $room_type])){
         $booked_dates = $stmt->fetchAll();
         return $booked_dates;
     }else {
