@@ -1,12 +1,37 @@
 <?php include_once 'includes/header.php'; ?>
+<?php include_once 'classes/hotel.class.php'; ?>
 
 <?php 
-if(isset($POST['search'])){
+if(isset($_POST['search'])){
 
-    $month = $POST['month'];
+    $month = $_POST['month'];
     $room_type = $_POST['room_type'];
-    echo 'values are posted';
+    
 
+
+    //getting the last day of the month 
+    $last_date= new DateTime();
+    $last_date = new DateTime('20-03-2024');
+    $last_date->modify('last day of '. $month);
+    $last_date = date_format($last_date,"d/m/Y");
+
+    //getting the first day of the month
+    $first_date= new DateTime();
+    $first_date = new DateTime('20-03-2024');
+    $first_date->modify('first day of '. $month);
+    $first_date = date_format($first_date,"d/m/Y");
+
+    print_r($last_date);
+
+
+
+    $test = new HotelBooking();
+
+    $arr_bookings = $test->bookedDates($first_date, $last_date, $room_type);
+
+    // print_r($arr_bookings);
+    // print_r($arr_bookings);
+    print_r($test->checkDuplicates($arr_bookings, 1));
 }
 
 ?>

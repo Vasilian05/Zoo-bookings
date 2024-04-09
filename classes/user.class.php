@@ -159,7 +159,6 @@ Class User extends Dbh {
                 return $user[0];
                 
             }else {
-                echo 'error';
                 $error = 'Incorrect password';
                 return $error;
             }

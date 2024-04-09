@@ -5,7 +5,7 @@
 
 $test = new HotelBooking();
 
- $arr_bookings = $test->bookedDates();
+ //$arr_bookings = $test->bookedDates();
 
 // print_r($arr_bookings);
 // print_r($arr_bookings);

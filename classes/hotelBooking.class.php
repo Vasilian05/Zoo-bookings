@@ -27,10 +27,10 @@ private function getBookings($date_start, $date_end, $room_type){
 
 
 //creates array with all booked dates including duplicates
-public function bookedDates(){
+public function bookedDates($first_date, $last_date, $room_type){
 
     //get the bookings in a given month
-    $bookings = $this->getBookings('2024-04-01', '2024-04-30', 1);
+    $bookings = $this->getBookings($first_date, $last_date, $room_type);
         
 
         $arr_dates = [];
