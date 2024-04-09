@@ -83,7 +83,7 @@ if(isset($_POST['search'])){
 if(isset($_POST['search'])){
 
     for($i = 0; $i < count($duplicates); $i++){
-        echo $diplicates[$i];
+       ?> <br><?php echo $duplicates[$i];
     }
 
 }
