@@ -42,9 +42,9 @@ if(isset($_POST['search'])){
   <div class="row align-items-start mt-5">
         <div class="col">
         <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">Month</label>
-            <select class="form-select" required name="month">
-            <option selected>Choose...</option>
+            <label class="input-group-text" >Month</label>
+            <select required class="form-select" name="month">
+            <option value="">Choose...</option>
             <option value="January">January</option>
             <option value="February">February</option>
             <option value="March">March</option>
@@ -62,9 +62,9 @@ if(isset($_POST['search'])){
         </div>
         <div class="col">
             <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">Room type</label>
-            <select class="form-select" required name="room_type">
-                <option selected>Choose...</option>
+            <label class="input-group-text">Room type</label>
+            <select required class="form-select" name="room_type">
+                <option value="">Choose...</option>
                 <option value="1">Single room</option>
                 <option value="2">Double room</option>
             </select>
@@ -78,9 +78,9 @@ if(isset($_POST['search'])){
 </form>
 </div>
 
-<h3>Unavaliable Dates</h3> 
 <?php
 if(isset($_POST['search'])){
+    ?><h3>Unavaliable Dates</h3> <?php
 
     for($i = 0; $i < count($duplicates); $i++){
        ?> <br><?php echo $duplicates[$i];
