@@ -82,12 +82,16 @@ public function checkDates($duplicates, $date_start, $nights){
         $new_date = date('d-m-Y', strtotime($date_start .' + ' .$i, ' days'));
 
         for($x = 0; $x < count($duplicates); $x++){
+
+            //check if the new date is in the list with unavailable dates
             if($new_date == $duplicates[$x]){
-                $message = $duplicates[$x] . 'is not available';
-                return $message;
+                
+                return false;
             }
         }
     }
+
+    return true;
 
 }
 public function makeBooking(){}
