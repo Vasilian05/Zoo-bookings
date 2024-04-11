@@ -31,7 +31,7 @@ if(isset($_POST['search'])){
     //print_r($arr_bookings);
     // print_r($arr_bookings);
     $duplicates = $test->checkDuplicates($arr_bookings, 2);
-    print_r($duplicates);
+
 }
 
 ?>
@@ -111,7 +111,7 @@ if(isset($_POST['search'])){
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Number of nights</label>
-                    <input name="baby_tickets" type="number" class="form-control">
+                    <input name="nights" type="number" class="form-control">
                 </div>
                 <div class="row mt-5">
                     <div class="col-6">
