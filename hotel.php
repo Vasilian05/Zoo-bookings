@@ -31,7 +31,14 @@ if(isset($_POST['search'])){
     //print_r($arr_bookings);
     // print_r($arr_bookings);
     $duplicates = $test->checkDuplicates($arr_bookings, 2);
+}
+if(isset($_POST['book'])){
+    echo 1;
+    $date_start = $_POST['date'];
+    $nights = $_POST['nights'];
 
+    $booking = new HotelBooking();
+  $booking->checkDates($duplicates, $date_start, $nights);
 }
 
 ?>
@@ -78,6 +85,9 @@ if(isset($_POST['search'])){
 </form>
 </div>
 
+<?php
+if(isset($_POST['search'])){
+?>
 
 
 <div class="container text-center">
@@ -123,5 +133,7 @@ if(isset($_POST['search'])){
         </div>
     </div>
 </div>  
+
+<?php } ?>
 
 <?php include_once 'includes/header.php'; ?>

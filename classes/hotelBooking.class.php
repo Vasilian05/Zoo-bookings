@@ -85,13 +85,13 @@ public function checkDates($duplicates, $date_start, $nights){
 
             //check if the new date is in the list with unavailable dates
             if($new_date == $duplicates[$x]){
-                
-                return false;
+
+                return 'false';
             }
         }
     }
 
-    return true;
+    return 'free';
 
 }
 public function makeBooking(){}
