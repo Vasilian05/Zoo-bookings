@@ -115,7 +115,7 @@ if(isset($_POST['search'])){
                 </div>
                 <div class="row mt-5">
                     <div class="col-6">
-                        <button name="submit"type="submit" class="btn btn-dark w-100">Book</button>
+                        <button name="book"type="submit" class="btn btn-dark w-100">Book</button>
                     </div>
                 </div>
             </form>

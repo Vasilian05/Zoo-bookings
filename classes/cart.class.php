@@ -34,6 +34,12 @@ public function TicketsToCart($adult_tickets, $child_tickets, $baby_tickets, $da
 
 }
 
+public function staysToCart($booking_date, $nights){
+
+
+    //
+}
+
 
 
 
