@@ -1,6 +1,4 @@
-<?php include_once 'config.php' ?>
-
-<?php
+<?php include_once 'config.php' ;
 
 Class User extends Dbh {
 
