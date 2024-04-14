@@ -75,6 +75,7 @@ public function checkDuplicates($arr_bookings, $number_of_rooms){
     return $values;
 }
 
+//checking if the dates that the user is trying to book are valid
 public function checkDates($duplicates, $date_start, $nights){
 
     //date('Y-m-d', strtotime($Date. ' + 1 days'));
@@ -91,7 +92,7 @@ public function checkDates($duplicates, $date_start, $nights){
         }
     }
 
-    return 'free';
+    return true;
 
 }
 public function makeBooking(){}

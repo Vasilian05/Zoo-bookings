@@ -13,12 +13,22 @@ if(isset($_SESSION['availability'])){
 }
 
 if(isset($_POST['book'])){
-    echo 1;
+
     $date_start = $_POST['date'];
     $nights = $_POST['nights'];
 
     $booking = new HotelBooking();
-    var_dump($booking->checkDates($duplicates, $date_start, $nights)) ;
+
+    //make sure the user is tryong to book available dates
+    if($booking->checkDates($duplicates, $date_start, $nights)){
+        $booking = array('Start date' => $date_start,
+        'nights' => $nights);
+        $_SESSION['hotel_booking'] =  $booking;
+        echo 'booking is added to cart';
+        
+    } else {
+        echo 'Please make sure the dates you are trying to book are available.';
+    }
 }
 ?>
 
