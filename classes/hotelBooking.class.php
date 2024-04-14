@@ -10,10 +10,10 @@ class HotelBooking extends Dbh implements Booking {
 
     // -------------Availability-------------
     
-//fetch bookings for a month
+//fetch bookings for a given period of time
 private function getBookings($date_start, $date_end, $room_type){
 
-    $stmt = $this->connect()->prepare('SELECT * FROM HotelBookings WHERE date_start > ? AND date_end < ? AND room_id IN (SELECT room_id FROM Room WHERE room_type_id = ?)');
+    $stmt = $this->connect()->prepare('SELECT * FROM HotelBookings WHERE date_start >= ? AND date_end <= ? AND room_id IN (SELECT room_id FROM Room WHERE room_type_id = ?)');
     if($stmt->execute([$date_start, $date_end, $room_type])){
         $booked_dates = $stmt->fetchAll();
         return $booked_dates;
@@ -95,11 +95,51 @@ public function checkDates($duplicates, $date_start, $nights){
     return true;
 
 }
-public function makeBooking(){}
+private function getRooms($room_type){
+
+    $stmt = $this->connect()->prepare('SELECT * FROM Rooms WHERE room_type = ?');
+
+    if($stmt->execute([$room_type])){
+        $rooms = $stmt->fetchAll();
+        $stmt = null;
+        return $rooms;
+    }else{
+        return false;
+    }
+
+}
+
+public function findRoom($dates, $room_type){
+
+    // get all rooms 
+    $rooms = $this->getRooms($room_type);
+
+    $date_start = $dates[0];
+    $date_end = $dates[sizeof($dates) - 1];
+
+    $bookings = $this->getBookings($date_start, $date_end, $room_type);
+    print_r($bookings);
+    for($i = 0; $i < count($rooms); $i++){
+        $curret_room = $rooms[$i]['room_id'];
+
+    }
+    
+    //
+}
+public function makeBooking(){
+    
+    // $date_start = $_SESSION['hotel_booking']['Start date'];
+    // $date_end = date('d-m-Y', strtotime($date_start .' + ' .$_SESSION['hotel_booking']['nights']. ' days'));
+    // $user_id = $_SESSION['user_id'];
+
+    // $stmt = $this->connect()->prepare('INSERT INTO safariBookings')
+}
 
 public function cancelBooking(){}
 
 public function displayBooking($user_id){}
+
+
 
 
 }

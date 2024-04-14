@@ -25,11 +25,16 @@ if(isset($_POST['book'])){
         'nights' => $nights);
         $_SESSION['hotel_booking'] =  $booking;
         echo 'booking is added to cart';
-        
+
     } else {
         echo 'Please make sure the dates you are trying to book are available.';
     }
+
+  
+
 }
+
+
 ?>
 
 
