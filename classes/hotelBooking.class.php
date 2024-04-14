@@ -79,14 +79,14 @@ public function checkDates($duplicates, $date_start, $nights){
 
     //date('Y-m-d', strtotime($Date. ' + 1 days'));
     for($i = 0; $i < $nights; $i++){
-        $new_date = date('d-m-Y', strtotime($date_start .' + ' .$i, ' days'));
+        $new_date = date('d-m-Y', strtotime($date_start .' + ' .$i. ' days'));
 
         for($x = 0; $x < count($duplicates); $x++){
 
             //check if the new date is in the list with unavailable dates
             if($new_date == $duplicates[$x]){
 
-                return 'false';
+                return false;
             }
         }
     }

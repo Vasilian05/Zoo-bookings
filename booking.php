@@ -18,7 +18,7 @@ if(isset($_POST['book'])){
     $nights = $_POST['nights'];
 
     $booking = new HotelBooking();
-  $booking->checkDates($duplicates, $date_start, $nights);
+    var_dump($booking->checkDates($duplicates, $date_start, $nights)) ;
 }
 ?>
 
@@ -57,7 +57,7 @@ if(isset($_POST['book'])){
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Number of nights</label>
-                    <input name="nights" type="number" class="form-control">
+                    <input required name="nights" type="number" class="form-control">
                 </div>
                 <div class="row mt-5">
                     <div class="col-6">
