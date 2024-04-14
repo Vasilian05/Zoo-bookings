@@ -31,15 +31,14 @@ if(isset($_POST['search'])){
     //print_r($arr_bookings);
     // print_r($arr_bookings);
     $duplicates = $test->checkDuplicates($arr_bookings, 2);
-}
-if(isset($_POST['book'])){
-    echo 1;
-    $date_start = $_POST['date'];
-    $nights = $_POST['nights'];
 
-    $booking = new HotelBooking();
-  $booking->checkDates($duplicates, $date_start, $nights);
+    //save duplicates in session
+    $_SESSION['availability'] = $duplicates;
+
+    header('location: booking.php');
+    // --------------for tomorrow, try saving this data into a session and retrieve it when they want to book------
 }
+
 
 ?>
 
@@ -85,55 +84,5 @@ if(isset($_POST['book'])){
 </form>
 </div>
 
-<?php
-if(isset($_POST['search'])){
-?>
-
-
-<div class="container text-center">
-    <div class="row align-items-start mt-5">
-        <div class="col-6">
-            <table class="table table-borderless">
-                <thead>
-                    <tr>
-                    <th scope="col"> </th>
-                    <th scope="col"><h3>Unavailable dates</h3></th>
-                    </tr>
-                </thead>
-                <tbody> <?php
-                    for($i = 0; $i < count($duplicates); $i++){ ?>
-                        <tr>
-                        <th scope="row"><?php $i+1 ?></th>
-                        <td><?php echo $duplicates[$i];?></td>
-                        </tr>
-                        <tr>
-                    <?php
-                    }?>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-6 text-start">
-            <h3 class="text-center">Make a booking</h3>
-            <form  class="w-75 mt-5"method="POST">
-                <div class="mb-3">
-                    <label class="form-label">Date</label>
-                    <input required name="date" type="date" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Number of nights</label>
-                    <input name="nights" type="number" class="form-control">
-                </div>
-                <div class="row mt-5">
-                    <div class="col-6">
-                        <button name="book"type="submit" class="btn btn-dark w-100">Book</button>
-                    </div>
-                </div>
-            </form>
-            
-        </div>
-    </div>
-</div>  
-
-<?php } ?>
 
 <?php include_once 'includes/header.php'; ?>

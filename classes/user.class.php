@@ -91,7 +91,6 @@ Class User extends Dbh {
 
             $stmt = null;
             header("location:index.php?error=stmtfailed");
-            exit();
         }
     }
     //public methods 
