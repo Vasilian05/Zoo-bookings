@@ -97,7 +97,7 @@ public function checkDates($duplicates, $date_start, $nights){
 }
 private function getRooms($room_type){
 
-    $stmt = $this->connect()->prepare('SELECT * FROM Rooms WHERE room_type = ?');
+    $stmt = $this->connect()->prepare('SELECT * FROM Room WHERE room_type_id = ?');
 
     if($stmt->execute([$room_type])){
         $rooms = $stmt->fetchAll();
@@ -111,7 +111,7 @@ private function getRooms($room_type){
 
 private function roomBooking($date_start, $date_end, $room_id){
 
-    $stmt = $this->connect()->prepare('SELECT * FROM HotelBookings WHERE date_start >= ? AND date_end <= ? AND room_id = ?');
+    $stmt = $this->connect()->prepare('SELECT * FROM HotelBookings WHERE date_start <= ? AND date_end >= ? AND room_id = ?');
 
     if($stmt->execute([$date_start, $date_end, $room_id])){
         $booking = $stmt->fetchAll();
@@ -129,15 +129,13 @@ public function findRoom($dates, $room_type){
     $rooms = $this->getRooms($room_type);
 
     $date_start = $dates[0];
-    $date_end = $dates[sizeof($dates) - 1];
-
-    $bookings = $this->getBookings($date_start, $date_end, $room_type);
+    $date_end = $dates[sizeof($dates) - 1];    
             
-            
-    print_r($bookings);
     for($i = 0; $i < count($rooms); $i++){
         $current_room = $rooms[$i]['room_id'];
+    
         $booking = $this->roomBooking($date_start, $date_end, $current_room);
+        print_r($booking);
         if(empty($booking)){
             return $current_room;
         }
