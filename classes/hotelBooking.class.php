@@ -122,6 +122,7 @@ private function roomBooking($date_start, $date_end, $room_id){
         exit();
     }
 }
+
 public function findRoom($dates, $room_type){
 
     // get all rooms 
@@ -132,14 +133,13 @@ public function findRoom($dates, $room_type){
 
     $bookings = $this->getBookings($date_start, $date_end, $room_type);
             
-    //find the how many days apart is start date from end date
-    $diff = date_diff($date_start, $date_end);
             
     print_r($bookings);
     for($i = 0; $i < count($rooms); $i++){
-        $curret_room = $rooms[$i]['room_id'];
-        if(in_array($date_start, $bookings[$i]['date_start']) || in_array($date_end, $bookings[$i]['date_end'])){
-                echo 'in array';
+        $current_room = $rooms[$i]['room_id'];
+        $booking = $this->roomBooking($date_start, $date_end, $current_room);
+        if(empty($booking)){
+            return $current_room;
         }
 
     }
