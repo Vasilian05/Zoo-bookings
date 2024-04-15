@@ -109,6 +109,19 @@ private function getRooms($room_type){
 
 }
 
+private function roomBooking($date_start, $date_end, $room_id){
+
+    $stmt = $this->connect()->prepare('SELECT * FROM HotelBookings WHERE date_start >= ? AND date_end <= ? AND room_id = ?');
+
+    if($stmt->execute([$date_start, $date_end, $room_id])){
+        $booking = $stmt->fetchAll();
+        $stmt = null;
+        return $booking;
+    }else {
+        $stmt = null;
+        exit();
+    }
+}
 public function findRoom($dates, $room_type){
 
     // get all rooms 
