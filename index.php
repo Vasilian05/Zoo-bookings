@@ -5,8 +5,8 @@
 <?php 
 
 $hotel = new HotelBooking();
-$dates = array('2024-04-26', '2024-04-27', '2024-04-28');
-echo $hotel->findRoom($dates, 1);
+$dates = array('2024-04-21', '2024-04-22', '2024-04-23');
+var_dump( $hotel->findRoom($dates, 1));
 
 ?>
 
