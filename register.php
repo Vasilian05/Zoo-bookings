@@ -17,7 +17,26 @@ if (isset($_POST['submit'])){
   $user->setNames($first_name, $last_name);
   $user->setEmail($email);
   $user->setPass($pass);
-  $user->addUser();
+  if($user->addUser()){ ?>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+  </button>
+    <div class="modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Account registered</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<?php
+  }
 }
 
 ?>
@@ -46,5 +65,5 @@ if (isset($_POST['submit'])){
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Privacy policy and terms and conditions</label>
   </div>
-  <button name="submit"type="submit" class="btn btn-primary">Submit</button>
+  <button name="submit"type="submit" class="btn btn-primary" data-bs-toggle="modal" >Submit</button>
 </form>

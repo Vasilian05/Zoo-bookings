@@ -53,7 +53,7 @@ $dates = array('2024-04-21', '2024-04-22', '2024-04-23');
     <div class="col-4">
       <h2>Why choose us?</h2>
       <p class="mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum voluptatibus praesentium ut quasi nesciunt. Voluptas veritatis omnis ipsum accusamus dolorem similique quia facere, impedit molestiae, voluptatibus dolores hic nihil ex?</p>
-      <a href="tickets.php" class="btn btn-outline-dark">Book a visit</a>
+      <a href="tickets.php" class="btn btn-outline-dark mt-3">Book a visit</a>
     </div>
     <div class="col-4">
       <img class="w-100" src="images/image_1.jpg" class="img-fluid" alt="">
@@ -67,7 +67,7 @@ $dates = array('2024-04-21', '2024-04-22', '2024-04-23');
     <div class="col-4">
       <h2 class="mt-5">Our loyalty program</h2>
       <p class="mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum voluptatibus praesentium ut quasi nesciunt. Voluptas veritatis omnis ipsum accusamus dolorem similique quia facere, impedit molestiae, voluptatibus dolores hic nihil ex?</p>
-      <a href="register.php" class="btn btn-outline-dark">Sign up for the benefits</a>
+      <a href="register.php" class="btn btn-outline-dark mt-3">Sign up for the benefits</a>
     </div>
   </div>
 <?php include 'includes/footer.php'?>
