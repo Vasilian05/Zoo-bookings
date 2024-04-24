@@ -1,20 +1,32 @@
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <input type="text" placeholder="animal">
 <button></button>
-<script>
 
-var name = 'cheetah'
-$.ajax({
-    method: 'GET',
-    url: 'https://api.api-ninjas.com/v1/animals?name=' + name,
-    headers: { 'X-Api-Key': 'Nlat/WGCXuj/45KHZ5/cfQ==yhi00ZG7gOXjjubB'},
-    contentType: 'application/json',
-    success: function(result) {
-        console.log(result);
-    },
-    error: function ajaxError(jqXHR) {
-        console.error('Error: ', jqXHR.responseText);
-    }
-});
+
+<script>
+fetchData();
+async function fetchData(){
+    
+    const url = 'https://animals-by-api-ninjas.p.rapidapi.com/v1/animals?name=cheetah';
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'fc61460869mshc25d1ced8913b2ep14c9cdjsn1025caee0617',
+		'X-RapidAPI-Host': 'animals-by-api-ninjas.p.rapidapi.com'
+	}
+};
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.text();
+	console.log(result);
+} catch (error) {
+	console.error(error);
+}
+}
+
+
+
+
 </script>
 
