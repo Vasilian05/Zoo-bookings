@@ -1,13 +1,16 @@
 
-<input type="text" placeholder="animal">
-<button></button>
+<input type="text" id="getAnimal" placeholder="animal">
+<button onclick="fetchData()"></button>
+<div id='name'></div>
 
 
 <script>
-fetchData();
+
 async function fetchData(){
     
-    const url = 'https://animals-by-api-ninjas.p.rapidapi.com/v1/animals?name=cheetah';
+    let animal = document.getElementById('getAnimal').value.toLowerCase();
+    console.log(animal);
+    const url = `https://animals-by-api-ninjas.p.rapidapi.com/v1/animals?name=${animal}`;
 const options = {
 	method: 'GET',
 	headers: {
