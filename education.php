@@ -1,11 +1,16 @@
 
-
+<?php include_once 'includes/header.php'; ?>
     <input type="text" id="getAnimal" placeholder="animal">
     <button onclick="fetchData()"></button>
     <div id='name'></div>
 
+    <div class="loading">
+
+    
+</div>
 
 <div class="container">
+    
 </div>
 
 <script>
@@ -23,11 +28,15 @@ const options = {
 };
 
 try {
+    document.querySelector('.loading').innerHTML = `</div>
+    <div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+  </div>`
 	const response = await fetch(url, options);
 	const result = await response.text();
 	var data = JSON.parse(result);
-    console.log(data[0]);
     displayAnimal(data);
+    
 
 } catch (error) {
 	console.error(error);
@@ -35,17 +44,27 @@ try {
 }
 
 function displayAnimal(data){
-    document.querySelector(".container").innerHTML = `
-            <div class="pokemonField">
-            <p>${data[1].name}</p>
-           
-        </div>
-        
-        `
 
+    
+
+    
+    for(let i = 0; i<data.length - 1; i++){
+
+        document.querySelector(`.container`).innerHTML += `
+                <div class="pokemonField">
+                <p>${data[i].name}</p>
+               
+            </div>
+            
+            `
+            console.log(i)
+    }
+ 
+    document.querySelector('.spinner-border').remove();
 }
 
 
 
 </script>
 
+<?php include_once 'includes/footer.php'; ?>
